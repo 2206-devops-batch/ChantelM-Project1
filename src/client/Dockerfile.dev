@@ -12,6 +12,7 @@ RUN pip install -r /app/requirements.txt
 
 COPY . /app
 
+# define the port number the container should expose
 EXPOSE 5000
 
 # Provide defaults for an executing container. If an executable is not specified, 
