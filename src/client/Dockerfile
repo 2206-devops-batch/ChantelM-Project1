@@ -12,6 +12,8 @@ RUN pip install -r /app/requirements.txt
 
 COPY . /app
 
+EXPOSE 5000
+
 # Provide defaults for an executing container. If an executable is not specified, 
 #then ENTRYPOINT must be specified as well. There can only be one CMD instruction in a Dockerfile
 CMD [ "python", "./app.py" ]
