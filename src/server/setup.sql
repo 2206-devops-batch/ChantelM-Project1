@@ -12,3 +12,6 @@ CREATE TABLE users(
     visited VARCHAR UNIQUE,
     wishlist VARCHAR UNIQUE
 );
+
+-- insert test users
+INSERT INTO users (name, password) VALUES ('test1', 'abc123'), ('test2', 'abc123');
