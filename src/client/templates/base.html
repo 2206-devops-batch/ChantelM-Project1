@@ -1,0 +1,49 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>CMP1</title>
+</head>
+<body>
+    {% if name %}
+        <h1>WHERE TO NEXT, {{ name }}?</h1>
+    {% else %}
+        <h1>WHERE TO NEXT?</h1>
+    {% endif %}
+
+    {% block content %} {% endblock %}
+</body>
+</html> -->
+
+{% extends "bootstrap/base.html" %}
+
+{% block title %}CMP1{% endblock title%}
+
+{# import the necessary macros: #}
+{% import "bootstrap/fixes.html" as fixes %}
+
+{% block head %}
+{{super()}}
+
+{%- endblock %}
+
+{% block styles -%}
+    {{super()}}
+{% endblock %}
+
+
+{% block body %}
+    {{super()}}
+    
+    {% if name %}
+        <h1>WHERE TO NEXT, {{ name }}?</h1>
+    {% else %}
+        <h1>WHERE TO NEXT?</h1>
+    {% endif %}
+
+    {% block page_content %}{% endblock %}
+
+{%- endblock %}
