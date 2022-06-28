@@ -1,4 +1,5 @@
 *.env
+*.peb
 .venv/
 __pycache__/
 notes.txt

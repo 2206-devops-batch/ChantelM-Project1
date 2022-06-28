@@ -5,16 +5,21 @@ FROM python:3.8.10
 WORKDIR /app
 
 # copy from source to destination
-COPY ./requirements.txt /app/requirements.txt
+COPY requirements.txt requirements.txt
 
 # Execute any commands on top of the current image as a new layer and commit the results
-RUN pip install -r /app/requirements.txt
+RUN pip install -r requirements.txt
 
-COPY . /app
+COPY . .
+
+# ENV FLASK_ENV=development
+# ENV FLASK_APP=app
+
 
 # define the port number the container should expose
 EXPOSE 5000
 
 # Provide defaults for an executing container. If an executable is not specified, 
 #then ENTRYPOINT must be specified as well. There can only be one CMD instruction in a Dockerfile
-CMD [ "python", "./app.py" ]
+# CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0"]

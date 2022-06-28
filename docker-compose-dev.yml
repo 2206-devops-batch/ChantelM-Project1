@@ -1,36 +1,28 @@
-version: '3.4'
-
-# TODO: volumes
-# FIXME: network
-
-# docker network create mynet
-# docker run -d -p 5432:5432 --network=mynet --network-alias=testnet flask_server
-# docker run -p 5000:5000 --network=mynet --network-alias=testnet flask_client
+version: '3.7'
 
 services:
-  wserver:
-    restart: always
+  pgdb:
     build:
       dockerfile: Dockerfile.dev
       context: ./src/server
-      network:
-        devnet
     ports:
-      - '5432:5432'
-    container_name: where_server
+      - "5432:5432"
+    container_name: "p1-db"
 
-  wclient:
-    restart: always
+  flask-app:
     build:
       dockerfile: Dockerfile.dev
       context: ./src/client
-      network:
-        devnet
+    links:
+      - "pgdb:testnet"
     ports:
-      - '5000:5000'
-    container_name: where_client
-    depends_on:
-      - wserver
-
-networks:
-  devnet:
+      - "5000:5000"
+    volumes:
+      - ./src/client:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app
+    container_name: p1-fa
+    command: flask run --host=0.0.0.0
+    depends_on: 
+      - pgdb
