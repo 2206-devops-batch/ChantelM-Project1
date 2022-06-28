@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  pgdb:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./src/server
+    ports:
+      - "5432:5432"
+    container_name: "p1-db"
+
+  flask-app:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./src/client
+    links:
+      - "pgdb:testnet"
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src/client:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app
+    container_name: p1-fa
+    command: flask run --host=0.0.0.0
+    depends_on: 
+      - pgdb
