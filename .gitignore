@@ -2,5 +2,6 @@
 *.peb
 .venv/
 __pycache__/
+.pytest_cache/
 notes.txt
 test.py

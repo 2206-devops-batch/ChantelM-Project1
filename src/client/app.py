@@ -6,8 +6,8 @@ import os
 
 curenv = os.environ.get('FLASK_ENV')
 config = dotenv_values(".env")
-# curenv = config['CURENV']
 app = Flask(__name__, template_folder='./templates')
+
 
 def get_db_connection():
     conn = None
@@ -39,4 +39,9 @@ def hello():
     return render_template('index.html', camps=camps)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port='5000')
+    options = [False, config['AWS_HOST'], config['AWS_PORT']]
+    
+    if curenv == 'development':
+        options = [True, '0.0.0.0', '5000']
+
+    app.run(debug=options[0], host=options[1], port=options[2])
