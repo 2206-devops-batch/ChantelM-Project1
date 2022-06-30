@@ -1,0 +1,27 @@
+---
+- name: Deploy Flask EC2 
+  hosts: p1flask
+  gather_facts: false
+
+  # https://docs.ansible.com/ansible/2.5/modules/docker_container_module.html
+  tasks:
+  - name: Stop AWS flask container
+    docker_container:
+      name: "p1_aws_fa"
+      state: stopped
+      ignore_errors: yes
+  
+  - name: Remove AWS flask container
+    docker_container:
+      name: "p1_aws_fa"
+      state: absent
+  
+  - name: Run AWS flask container
+    docker_container:
+      name: "p1_aws_fa"
+      image: "chamoo334/p1fa"
+      restart: true
+      pull: true
+      ports:
+      - "5000:5000"
+  

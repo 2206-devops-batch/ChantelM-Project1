@@ -1,7 +1,11 @@
 *.env
-*.peb
+*.pem
+*.cfg
+inventory
+data.sql
 .venv/
 __pycache__/
 .pytest_cache/
+vagr/
+vagrant/
 notes.txt
-test.py
