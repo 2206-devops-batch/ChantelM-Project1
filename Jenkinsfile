@@ -2,25 +2,10 @@ pipeline {
     agent any
     
     stages {
-        stage('Clone') {
+        // https://www.jenkins.io/doc/book/pipeline/syntax/#steps TODO: add steps for pull request trigger
+        stage('Testing PR and Aprroved') {
             steps {
-                echo 'Cloning'
+                echo '${ghprbCommentBody}'
             }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
     }
 }
