@@ -2,24 +2,10 @@ pipeline {
     agent any
     
     stages {
-        stage('Clone') {
+
+        stage('Testing PR and Aprroved') {
             steps {
-                echo 'Cloning'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'printenv'
             }
         }
     }
