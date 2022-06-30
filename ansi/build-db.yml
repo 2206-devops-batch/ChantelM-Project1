@@ -1,0 +1,15 @@
+---
+- name: Build PostgreSQL Image
+  hosts: local
+  gather_facts: false
+
+  # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
+  tasks:
+  - name: build the image
+    docker_image:
+      source: build
+      build:
+        path: ../src/server
+      name: chamoo334/p1db
+      tag: latest
+      state: present
