@@ -1,0 +1,8 @@
+---
+- name: Push Images to Docker Hub
+  hosts: local
+  gather_facts: false
+
+  # tasks:
+  # - name: Push DB
+  # - name: Push Flask

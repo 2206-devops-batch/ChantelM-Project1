@@ -1,0 +1,21 @@
+---
+- name: Build Flask Image
+  hosts: local
+  gather_facts: false
+
+  # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
+  tasks:
+  - name: Build Flask image
+    docker_image:
+      source: build
+      build:
+        path: ../src/client
+      name: chamoo334/p1fa
+      tag: latest
+      state: present
+
+  # - name: Run Flask tests
+
+
+
+
