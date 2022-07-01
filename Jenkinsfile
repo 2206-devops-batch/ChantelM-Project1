@@ -1,11 +1,9 @@
-properties([pipelineTriggers([githubPush()])])
-
 pipeline {
     agent any
     
     stages {
 
-        stage('Testing Pushes trigger with github-webhook') {
+        stage('Obtaining hook data: push') {
             steps {
                 sh 'printenv'
             }
