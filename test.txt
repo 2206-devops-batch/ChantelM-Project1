@@ -1,1 +1,1 @@
-Test a
+Testing both the initial pull request and approval trigger word
