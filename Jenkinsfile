@@ -1,11 +1,9 @@
-properties([pipelineTriggers([githubPull()])])
-
 pipeline {
     agent any
     
     stages {
 
-        stage('Testing PR and Aprroved GitHub') {
+        stage('Testing PR on main branch only') {
             steps {
                 sh 'printenv'
             }
