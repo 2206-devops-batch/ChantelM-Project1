@@ -3,7 +3,7 @@ pipeline {
     
     stages {
 
-        stage('Testing PR and Aprroved') {
+        stage('Testing PR on main branch only') {
             steps {
                 sh 'printenv'
             }
