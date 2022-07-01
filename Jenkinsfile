@@ -1,13 +1,18 @@
-properties([pipelineTriggers([githubPush()])])
-
 pipeline {
     agent any
     
-    stages {
+    triggers {
+      pullRequestReview(reviewStates: ['pending', 'approved'])
+    }
 
-        stage('Testing Pushes trigger with github-webhook') {
+    stages {
+        stage('Clone') {
             steps {
                 sh 'printenv'
+                if (env.CHANGE_ID){
+                    echo 'pull request'
+                    echo '${GITHUB_REVIEW_STATE}'
+                }   
             }
         }
     }
