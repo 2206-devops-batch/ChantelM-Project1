@@ -27,22 +27,23 @@ pipeline {
             agent { label 'linuxbuild' }
             steps {
                 checkout scm
+                sh 'ls'
                 
-                dir("src/client/ansi") {
-                    // sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
-                    // sh 'cp /home/ubuntu/inventory inventory'
-                    // sh 'cp /home/ubuntu/p1.pem p1.pem'
-                    // sh 'chmod 400 p1.pem'
-                    // sh 'ansible-playbook -i inventory build-flask.yml'
-                    // sh 'rm ansible.cfg inventory'
-                    // sh 'sudo rm p1.pem'
-                    echo 'testing jenkins ansible'
+                // dir("src/client/ansi") {
+                //     // sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                //     // sh 'cp /home/ubuntu/inventory inventory'
+                //     // sh 'cp /home/ubuntu/p1.pem p1.pem'
+                //     // sh 'chmod 400 p1.pem'
+                //     // sh 'ansible-playbook -i inventory build-flask.yml'
+                //     // sh 'rm ansible.cfg inventory'
+                //     // sh 'sudo rm p1.pem'
+                //     echo 'testing jenkins ansible'
 
-                    ansiblePlaybook( 
-                        playbook: 'build-flask.yml',
-                        inventory: '/home/ubuntu/inventory')
+                //     ansiblePlaybook( 
+                //         playbook: 'build-flask.yml',
+                //         inventory: '/home/ubuntu/inventory')
 
-                }
+                // }
                 
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
                     sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
