@@ -37,6 +37,11 @@ pipeline {
                 // """
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
                     sh 'git ls-remote'
+                    sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+                    sh 'git fetch --all'
+                    // sh ''
+                    // sh ''
+                    // sh ''
                 }
                 // dir("src/client/ansi") {
                 //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
