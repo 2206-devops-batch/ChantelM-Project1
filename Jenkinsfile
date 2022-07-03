@@ -41,7 +41,7 @@ pipeline {
                     sh 'git fetch --all'
                     sh 'git switch production'
                     sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
-                    sh 'git pull'
+                    sh 'git pull --rebase'
                     // sh 'git pull --rebase origin development'
                     sh 'git add .'
                     sh 'git commit -m "updating from development'
