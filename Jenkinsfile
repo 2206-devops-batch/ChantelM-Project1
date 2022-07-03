@@ -9,16 +9,17 @@ pipeline {
             agent { label 'linuxtest' }
             steps {
                 echo 'run unittests here on intital pr to development'
+                echo 'testing pr should show in pr tab'
                 sh 'printenv'
             }
         }
         stage('Build') {
             when {
                 branch 'development'
-                changeRequest target: 'development'
             }
             agent { label 'linuxbuild' }
             steps {
+                echo 'testing build stage'
                 echo 'ansible playbook build and push to docker hub here'
                 echo 'if successful, git merge with production for next trigger'
             }
