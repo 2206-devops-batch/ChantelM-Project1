@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             when {
                 branch 'development'
-                expressions { branch == changeRequest target: 'development'}
+                changeRequest target: 'development'
             }
             agent { label 'linuxbuild' }
             steps {
