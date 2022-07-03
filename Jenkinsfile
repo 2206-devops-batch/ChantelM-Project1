@@ -29,7 +29,7 @@ pipeline {
                 checkout scm
                 
                 dir("ansi") {
-                    echo 'testing jenkins ansible'
+                    echo 'testing jenkins ansible.cfg python interpreter setting'
                     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
                     sh 'cp /home/ubuntu/inventory inventory'
                     sh 'cp /home/ubuntu/p1.pem p1.pem'
