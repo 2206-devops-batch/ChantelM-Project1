@@ -4,7 +4,7 @@ pipeline {
         skipDefaultCheckout()      // Don't checkout automatically
     }
     stages {
-        stage('Testing PR') {
+        stage('Test') {
             when {
                 branch 'PR-*'
                 changeRequest target: 'development'
@@ -12,13 +12,15 @@ pipeline {
             agent { label 'linuxtest' }
             steps {
                 checkout scm
-                sh 'cd src/client'
-                sh 'ls'
-                // sh 'pip install -r requirements.txt'
-                // sh 'pytest tests/'
+                dir("src/client") {
+                    sh 'pip install -r requirements.txt'
+                }
+                dir("src/client/tests") {
+                    sh 'python3 -m pytest test_example.py'
+                }
             }
         }
-        stage('Clone and Build Docker image') {
+        stage('Build') {
             when {
                 branch 'development'
             }
@@ -29,7 +31,7 @@ pipeline {
                 echo 'if successful, git merge with production for next trigger'
             }
         }
-        stage('Deploying Docker') {
+        stage('Deploy') {
             when {
                 branch 'production'
             }
