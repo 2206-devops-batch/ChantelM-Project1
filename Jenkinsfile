@@ -30,7 +30,11 @@ pipeline {
                 dir("src/client/ansi") {
                     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
                     sh 'cp /home/ubuntu/inventory inventory'
+                    sh 'ls'
                     echo 'ansible playbook build-flask.yml'
+                }
+                sshagent (credentials: ['chamoo334-jenkins']) {
+                    sh 'git push origin production'
                 }
                 echo 'if successful, git merge with production for next trigger'
             }
