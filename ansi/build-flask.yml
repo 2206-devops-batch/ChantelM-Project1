@@ -1,7 +1,7 @@
 ---
 - name: Build Flask Image
   hosts: local
-  gather_facts: false
+  gather_facts: true
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
   tasks:
