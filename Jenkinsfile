@@ -13,8 +13,6 @@ pipeline {
             steps {
                 checkout scm
                 dir("src/client") {
-                    sh "pwd"
-                    sh 'ls'
                     sh 'pip install -r requirements.txt'
                 }
                 dir("src/client/tests") {
