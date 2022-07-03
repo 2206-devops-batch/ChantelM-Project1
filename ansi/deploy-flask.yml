@@ -1,7 +1,7 @@
 ---
 - name: Deploy Flask EC2 
   hosts: p1flask
-  gather_facts: false
+  gather_facts: true
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_container_module.html
   tasks:

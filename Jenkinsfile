@@ -42,7 +42,7 @@ pipeline {
                     sh 'cp /home/ubuntu/inventory inventory'
                     sh 'cp /home/ubuntu/p1.pem p1.pem'
                     sh 'chmod 400 p1.pem'
-                    sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory deploy-flask.yml'
+                    sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml'
                     sh 'rm ansible.cfg inventory'
                     sh 'sudo rm p1.pem'
 
