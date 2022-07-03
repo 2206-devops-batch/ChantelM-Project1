@@ -42,10 +42,10 @@ pipeline {
                     sh 'git switch production'
                     sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
                     sh 'git pull --rebase origin production'
-                    // sh 'git pull --rebase origin development'
-                    // sh 'git add .'
-                    // sh 'git commit -m "updating from development'
-                    // sh 'git push --set-upstream origin production'
+                    sh 'git pull --rebase origin development'
+                    sh 'git add .'
+                    sh 'git commit -m "updating from jenkins development build'
+                    sh 'git push --set-upstream origin production'
                 }
                 // dir("src/client/ansi") {
                 //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
