@@ -1,31 +1,54 @@
 pipeline {
     agent {label "linuxmain"}
+    options {
+        skipDefaultCheckout()      // Don't checkout automatically
+    }
     stages {
-        stage('Test') {
+        stage('Cloning PR') {
             when {
                 branch 'PR-*'
                 changeRequest target: 'development'
             }
             agent { label 'linuxtest' }
             steps {
-                echo 'run unittests here on intital pr to development'
-                echo 'testing pr should show in pr tab'
-                sh 'printenv'
+                checkout scm
+                echo 'cloned pull request'
             }
         }
-        stage('Build') {
+        stage('Testing PR') {
+            when {
+                branch 'PR-*'
+                changeRequest target: 'development'
+            }
+            agent { label 'linuxtest' }
+            steps {
+                dir("/src/client") {
+                    sh "pwd"
+                }
+                echo 'pull request can now be tests'
+            }
+        }
+        stage('Cloning for build Docker') {
             when {
                 branch 'development'
             }
             agent { label 'linuxbuild' }
             steps {
-                echo 'testing build stage'
+                echo 'cloning for docker image build'
+            }
+        }
+        stage('Building Docker images') {
+            when {
+                branch 'development'
+            }
+            agent { label 'linuxbuild' }
+            steps {
                 echo 'ansible playbook build and push to docker hub here'
                 echo 'if successful, git merge with production for next trigger'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploying Docker') {
             when {
                 branch 'production'
             }
@@ -37,3 +60,4 @@ pipeline {
         }
     }
 }
+
