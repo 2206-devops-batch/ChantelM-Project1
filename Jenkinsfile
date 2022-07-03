@@ -37,12 +37,13 @@ pipeline {
                 //     git push --set-upstream origin production
                 // """
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
-                    sh 'git ls-remote'
                     sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
                     sh 'git fetch --all'
                     sh 'git switch production'
-                    sh 'git pull --rebase origin development'
                     sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
+                    sh 'git pull --rebase origin development'
+                    sh 'git add .'
+                    sh 'git commit -m "updating from development'
                     sh 'git push --set-upstream origin production'
                 }
                 // dir("src/client/ansi") {
