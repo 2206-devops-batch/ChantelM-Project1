@@ -29,7 +29,7 @@ pipeline {
                 checkout scm
                 
                 dir("ansi") {
-                    echo 'testing jenkins ansible.cfg python interpreter setting'
+                    echo 'testing jenkins individual py interpreters listed'
                     
                     // script {
                     //     ansiblePlaybook( 
