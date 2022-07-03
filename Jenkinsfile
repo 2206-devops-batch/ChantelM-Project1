@@ -30,14 +30,8 @@ pipeline {
                 
                 dir("ansi") {
                     echo 'testing jenkins ansible.cfg python interpreter setting'
-                    // sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
-                    // sh 'cp /home/ubuntu/inventory inventory'
-                    // sh 'cp /home/ubuntu/p1.pem p1.pem'
-                    // sh 'chmod 400 p1.pem'
-                    // sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml'
-                    // sh 'rm ansible.cfg inventory'
-                    // sh 'sudo rm p1.pem'
-                    sh 'which python3'
+                    
+                    sh 'pwd'
 
                 }
                 
