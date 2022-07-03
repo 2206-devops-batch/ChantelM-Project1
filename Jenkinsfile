@@ -28,6 +28,7 @@ pipeline {
             steps {
                 checkout scm
                 sh """
+                    git config pull.rebase false
                     git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                     git fetch --all
                     git switch production
