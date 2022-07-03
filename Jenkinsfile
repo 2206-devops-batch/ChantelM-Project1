@@ -27,8 +27,22 @@ pipeline {
             agent { label 'linuxbuild' }
             steps {
                 checkout scm
-                echo 'ansible playbook ansi/build-flask.yml'
-                echo 'if successful, git merge with production for next trigger'
+                
+                dir("src/client/ansi") {
+                    sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                    sh 'cp /home/ubuntu/inventory inventory'
+                    sh 'ls'
+                    echo 'ansible playbook build-flask.yml'
+                }
+                
+                sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
+                    sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+                    sh 'git fetch --all'
+                    sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
+                    sh 'git checkout production'
+                    sh 'git merge development'
+                    sh 'git push origin production --force'
+                }
             }
         }
         stage('Deploy') {
@@ -40,6 +54,14 @@ pipeline {
                 checkout scm
                 echo 'ansible playbook ansi/deploy-flask.yml'
                 echo 'merge with master if successful'
+                sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
+                    sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
+                    sh 'git fetch --all'
+                    sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
+                    sh 'git checkout master'
+                    sh 'git merge production'
+                    sh 'git push origin master --force'
+                }
             }
         }
     }
