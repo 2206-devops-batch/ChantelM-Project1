@@ -1,5 +1,8 @@
 pipeline {
     agent {label "linuxmain"}
+    options {
+        skipDefaultCheckout()      // Don't checkout automatically
+    }
     stages {
         stage('Cloning PR') {
             when {
@@ -8,11 +11,8 @@ pipeline {
             }
             agent { label 'linuxtest' }
             steps {
-                dir("/src/client") {
-                    sh "pwd"
-                }
-                echo 'cloning the pull request for testing'
-                sh 'printenv'
+                checkout scm
+                echo 'cloned pull request'
             }
         }
         stage('Testing PR') {
