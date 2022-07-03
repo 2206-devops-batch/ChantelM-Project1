@@ -31,7 +31,12 @@ pipeline {
                 dir("ansi") {
                     echo 'testing jenkins ansible.cfg python interpreter setting'
                     
-                    sh 'pwd'
+                    script {
+                        ansiblePlaybook( 
+                            playbook: '/home/ubuntu/workspace/p1-multi_development/ansi/build-flask.yml',
+                            inventory: '/home/ubuntu/inventory'
+                        )
+                    }
 
                 }
                 
