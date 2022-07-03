@@ -1,8 +1,5 @@
 pipeline {
     agent {label "linuxmain"}
-    triggers {
-      pullRequestReview(reviewStates: ['approved'])
-    }
     stages {
         stage('Test') {
             when {
