@@ -34,7 +34,7 @@ pipeline {
                     echo 'ansible playbook build-flask.yml'
                 }
                 sshagent (credentials: ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
-                    sh 'git ls-remote -h --refs git@github.com:2206-devops-batch/ChantelM-Project1.git production | awk "{print $1}'
+                    sh 'git push git@github.com:2206-devops-batch/ChantelM-Project1.git production'
                 }
                 echo 'if successful, git merge with production for next trigger'
             }
