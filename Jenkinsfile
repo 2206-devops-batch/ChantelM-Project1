@@ -1,5 +1,8 @@
 pipeline {
     agent {label "linuxmain"}
+    options {
+        skipDefaultCheckout()      // Don't checkout automatically
+    }
     stages {
         stage('Test') {
             when {
@@ -8,8 +11,13 @@ pipeline {
             }
             agent { label 'linuxtest' }
             steps {
-                echo 'run unittests here on intital pr to development'
-                sh 'printenv'
+                checkout scm
+                dir("src/client") {
+                    sh 'pip install -r requirements.txt'
+                }
+                dir("src/client/tests") {
+                    sh 'python3 -m pytest test_example.py'
+                }
             }
         }
         stage('Build') {
@@ -18,18 +26,19 @@ pipeline {
             }
             agent { label 'linuxbuild' }
             steps {
-                echo 'ansible playbook build and push to docker hub here'
+                checkout scm
+                echo 'ansible playbook ansi/build-flask.yml'
                 echo 'if successful, git merge with production for next trigger'
             }
         }
-
         stage('Deploy') {
             when {
                 branch 'production'
             }
             agent { label 'linuxdeploy' }
             steps {
-                echo 'pull from docker hub and deploy'
+                checkout scm
+                echo 'ansible playbook ansi/deploy-flask.yml'
                 echo 'merge with master if successful'
             }
         }
