@@ -44,7 +44,7 @@ pipeline {
                     sh 'git pull --rebase origin production'
                     sh 'git pull --rebase origin development'
                     sh 'git add .'
-                    sh 'git commit -m "updating from jenkins development build'
+                    sh 'git commit -m "updating from jenkins development build"'
                     sh 'git push --set-upstream origin production'
                 }
                 // dir("src/client/ansi") {
