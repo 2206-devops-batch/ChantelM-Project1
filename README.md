@@ -12,3 +12,5 @@ Web application to manage future camping locations
 - [Multibranch Scan Webhook Trigger](https://plugins.jenkins.io/multibranch-scan-webhook-trigger/)
 - [GitHub](https://plugins.jenkins.io/github/)
 - [Ansible](https://plugins.jenkins.io/github/)
+
+# testing feature branch
