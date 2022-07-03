@@ -37,7 +37,7 @@ pipeline {
                     sh 'ls'
                     echo 'ansible playbook build-flask.yml'
                 }
-                echo 'if successful, git merge with production for next trigger'
+                sh 'git push origin production'
             }
         }
         stage('Deploy') {
