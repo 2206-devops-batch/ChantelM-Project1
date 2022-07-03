@@ -31,7 +31,7 @@ pipeline {
                 dir("ansi") {
                     echo 'testing jenkins ansible.cfg python interpreter setting'
                     
-                    sh 'which python3'
+                    sh 'pwd'
 
                 }
                 
