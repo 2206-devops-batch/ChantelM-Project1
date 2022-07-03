@@ -13,35 +13,29 @@ pipeline {
             steps {
                 checkout scm
                 sh 'cd src/client'
+                sh 'pip install -r requirements.txt'
+                sh 'pytest tests/'
             }
         }
-        stage('Cloning for build Docker') {
+        stage('Clone and Build Docker image') {
             when {
                 branch 'development'
             }
             agent { label 'linuxbuild' }
             steps {
-                echo 'cloning for docker image build'
-            }
-        }
-        stage('Building Docker images') {
-            when {
-                branch 'development'
-            }
-            agent { label 'linuxbuild' }
-            steps {
-                echo 'ansible playbook build and push to docker hub here'
+                checkout scm
+                echo 'ansible playbook ansi/build-flask.yml'
                 echo 'if successful, git merge with production for next trigger'
             }
         }
-
         stage('Deploying Docker') {
             when {
                 branch 'production'
             }
             agent { label 'linuxdeploy' }
             steps {
-                echo 'pull from docker hub and deploy'
+                checkout scm
+                echo 'ansible playbook ansi/deploy-flask.yml'
                 echo 'merge with master if successful'
             }
         }
