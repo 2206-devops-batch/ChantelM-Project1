@@ -16,8 +16,6 @@ pipeline {
                     sh "pwd"
                     sh 'ls'
                     sh 'pip install -r requirements.txt'
-                    sh 'which python3'
-                    sh 'which python'
                 }
                 dir("src/client/tests") {
                     sh 'python3 -m pytest test_example.py'
