@@ -15,10 +15,10 @@ pipeline {
         stage('Build') {
             when {
                 branch 'development'
-                changeRequest target: 'development'
             }
             agent { label 'linuxbuild' }
             steps {
+                echo 'testing build stage'
                 echo 'ansible playbook build and push to docker hub here'
                 echo 'if successful, git merge with production for next trigger'
             }
