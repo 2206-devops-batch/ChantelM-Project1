@@ -27,9 +27,9 @@ pipeline {
             agent { label 'linuxbuild' }
             steps {
                 checkout scm
-                sh 'ls'
                 
-                // dir("src/client/ansi") {
+                dir("src/client") {
+                    sh 'ls'
                 //     // sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
                 //     // sh 'cp /home/ubuntu/inventory inventory'
                 //     // sh 'cp /home/ubuntu/p1.pem p1.pem'
@@ -43,7 +43,7 @@ pipeline {
                 //         playbook: 'build-flask.yml',
                 //         inventory: '/home/ubuntu/inventory')
 
-                // }
+                }
                 
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
                     sh "git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'"
