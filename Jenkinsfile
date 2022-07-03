@@ -27,6 +27,7 @@ pipeline {
             agent { label 'linuxbuild' }
             steps {
                 checkout scm
+                echo 'testing all through ssh with username'
                 // sh """
                 //     git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                 //     git fetch --all
