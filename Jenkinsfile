@@ -8,7 +8,7 @@ pipeline {
             }
             agent { label 'linuxtest' }
             steps {
-                dir("folder") {
+                dir("/src/client") {
                     sh "pwd"
                 }
                 echo 'run unittests here on intital pr to development'
