@@ -30,7 +30,7 @@ pipeline {
                 sh """
                     git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                     git fetch --all
-                    git switch production
+                    git push --set-upstream origin production
                 """
                 // dir("src/client/ansi") {
                 //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
