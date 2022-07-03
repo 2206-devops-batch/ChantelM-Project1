@@ -13,6 +13,7 @@
       name: chamoo334/p1fa
       tag: latest
       state: present
+      push: yes
 
   # - name: Run Flask tests
 
