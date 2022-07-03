@@ -12,12 +12,12 @@ pipeline {
             agent { label 'linuxtest' }
             steps {
                 checkout scm
-                dir("src") {
+                dir("src/client") {
                     sh "pwd"
                     sh 'ls'
+                    sh 'pip install -r requirements.txt'
+                    sh 'pytest tests/'
                 }
-                // sh 'pip install -r requirements.txt'
-                // sh 'pytest tests/'
             }
         }
         stage('Clone and Build Docker image') {
