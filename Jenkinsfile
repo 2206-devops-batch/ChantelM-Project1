@@ -16,7 +16,9 @@ pipeline {
                     sh "pwd"
                     sh 'ls'
                     sh 'pip install -r requirements.txt'
-                    sh 'python -m pytest tests/'
+                }
+                dir("src/client/tests") {
+                    sh 'python -m pytest test_example.py'
                 }
             }
         }
