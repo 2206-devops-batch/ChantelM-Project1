@@ -27,7 +27,11 @@ pipeline {
             agent { label 'linuxbuild' }
             steps {
                 checkout scm
-                echo 'ansible playbook ansi/build-flask.yml'
+                dir("src/client/ansi") {
+                    sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                    sh 'cp /home/ubuntu/inventory inventory'
+                    echo 'ansible playbook build-flask.yml'
+                }
                 echo 'if successful, git merge with production for next trigger'
             }
         }
