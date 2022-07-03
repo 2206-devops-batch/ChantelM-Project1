@@ -13,8 +13,6 @@ pipeline {
             steps {
                 checkout scm
                 sh 'cd src/client'
-                sh 'pip install -r requirements.txt'
-                sh 'pytest tests/'
             }
         }
         stage('Cloning for build Docker') {
