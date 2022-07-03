@@ -32,8 +32,10 @@ pipeline {
                     git fetch --all
                     git switch production
                     git pull --rebase origin development
-                    git push --set-upstream origin production
                 """
+                sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
+                    sh 'git push --set-upstream origin production'
+                }
                 // dir("src/client/ansi") {
                 //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
                 //     sh 'cp /home/ubuntu/inventory inventory'
