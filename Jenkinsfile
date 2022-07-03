@@ -4,7 +4,7 @@ pipeline {
         skipDefaultCheckout()      // Don't checkout automatically
     }
     stages {
-        stage('Testing PR') {
+        stage('Test') {
             when {
                 branch 'PR-*'
                 changeRequest target: 'development'
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('Clone and Build Docker image') {
+        stage('Build') {
             when {
                 branch 'development'
             }
@@ -31,7 +31,7 @@ pipeline {
                 echo 'if successful, git merge with production for next trigger'
             }
         }
-        stage('Deploying Docker') {
+        stage('Deploy') {
             when {
                 branch 'production'
             }
