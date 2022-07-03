@@ -30,14 +30,14 @@ pipeline {
                 sh """
                     git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                     git fetch --all
+                    git branch
                 """
-                dir("src/client/ansi") {
-                    sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
-                    sh 'cp /home/ubuntu/inventory inventory'
-                    sh 'ls'
-                    echo 'ansible playbook build-flask.yml'
-                }
-                sh 'git push origin production'
+                // dir("src/client/ansi") {
+                //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                //     sh 'cp /home/ubuntu/inventory inventory'
+                //     sh 'ls'
+                //     echo 'ansible playbook build-flask.yml'
+                // }
             }
         }
         stage('Deploy') {
