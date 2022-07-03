@@ -2,6 +2,7 @@
 - name: Build Flask Image
   hosts: local
   gather_facts: false
+  become: true
 
 
   pre_tasks:
