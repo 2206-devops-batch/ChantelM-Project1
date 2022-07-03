@@ -1,18 +1,32 @@
 pipeline {
     agent {label "linuxmain"}
+    options {
+        skipDefaultCheckout()      // Don't checkout automatically
+    }
     stages {
-        stage('Test') {
+        stage('Testing PR') {
             when {
                 branch 'PR-*'
                 changeRequest target: 'development'
             }
             agent { label 'linuxtest' }
             steps {
-                echo 'run unittests here on intital pr to development'
-                sh 'printenv'
+                checkout scm
+                sh 'cd src/client'
+                sh 'pip install -r requirements.txt'
+                sh 'pytest tests/'
             }
         }
-        stage('Build') {
+        stage('Cloning for build Docker') {
+            when {
+                branch 'development'
+            }
+            agent { label 'linuxbuild' }
+            steps {
+                echo 'cloning for docker image build'
+            }
+        }
+        stage('Building Docker images') {
             when {
                 branch 'development'
             }
@@ -23,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploying Docker') {
             when {
                 branch 'production'
             }
@@ -35,3 +49,4 @@ pipeline {
         }
     }
 }
+
