@@ -9,6 +9,7 @@ pipeline {
             agent { label 'linuxtest' }
             steps {
                 echo 'run unittests here on intital pr to development'
+                echo 'testing pr should show in pr tab'
                 sh 'printenv'
             }
         }
