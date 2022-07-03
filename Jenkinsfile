@@ -16,7 +16,7 @@ pipeline {
                     sh "pwd"
                     sh 'ls'
                     sh 'pip install -r requirements.txt'
-                    sh 'pytest tests/'
+                    sh 'python -m pytest tests/'
                 }
             }
         }
