@@ -4,17 +4,6 @@ pipeline {
         skipDefaultCheckout()      // Don't checkout automatically
     }
     stages {
-        stage('Cloning PR') {
-            when {
-                branch 'PR-*'
-                changeRequest target: 'development'
-            }
-            agent { label 'linuxtest' }
-            steps {
-                checkout scm
-                echo 'cloned pull request'
-            }
-        }
         stage('Testing PR') {
             when {
                 branch 'PR-*'
@@ -22,10 +11,10 @@ pipeline {
             }
             agent { label 'linuxtest' }
             steps {
-                dir("/src/client") {
-                    sh "pwd"
-                }
-                echo 'pull request can now be tests'
+                checkout scm
+                sh 'cd src/client'
+                sh 'pip install -r requirements.txt'
+                sh 'pytest tests/'
             }
         }
         stage('Cloning for build Docker') {
