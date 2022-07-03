@@ -29,7 +29,7 @@ pipeline {
                 checkout scm
                 
                 dir("ansi") {
-                    echo 'testing jenkins individual py interpreters listed'
+                    echo 'testing Ansible API permissions'
                     
                     // script {
                     //     ansiblePlaybook( 
@@ -44,7 +44,7 @@ pipeline {
                     sh 'chmod 400 p1.pem'
                     sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml'
                     sh 'rm ansible.cfg inventory'
-                    sh 'sudo rm p1.pem'
+                    sh 'rm p1.pem'
 
                 }
                 
