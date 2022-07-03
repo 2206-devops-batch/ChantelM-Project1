@@ -42,7 +42,7 @@ pipeline {
                     sh "git remote set-url origin https://${gh_user}:${gh_pass}@github.com/2206-devops-batch/ChantelM-Project1.git"
                     sh 'git checkout production'
                     sh 'git merge development'
-                    sh 'git push origin production'
+                    sh 'git push origin production --force'
                 }
                 // dir("src/client/ansi") {
                 //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
