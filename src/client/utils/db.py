@@ -1,33 +1,46 @@
-from dotenv import dotenv_values
 import psycopg2
 import os
+import utils.env as config
+# import env as config
 
 curenv = os.environ.get('FLASK_ENV')
-config = dotenv_values(".env")
 
-# DB_HOST = config['DB_PROD_HOST'] if curenv == 'production' else config['DB_DEV_HOST']
-# DB_PORT = config['DB_PROD_PROD'] if curenv == 'production' else config['DB_DEV_PORT']
+def set_host_port():
+    if curenv == 'production':
+        return config.DB_PROD_HOST, config.DB_PROD_PORT
+    
+    return config.DB_DEV_HOST, config.DB_DEV_PORT
+
+DB_HOST, DB_PORT = set_host_port()
 
 def get_db_connection():
     conn = None
     try:
         conn = psycopg2.connect(
-                                # host=DB_HOST,
-                                # port=DB_PORT,
-                                database=config['DB'],
-                                user=config['DB_USER'],
-                                password=config['DB_PASSWORD'])
+                                host=DB_HOST,
+                                port=DB_PORT,
+                                user=config.DB_USER,
+                                password=config.DB_PASSWORD)
     except:
         conn = None
     
     return conn
 
 
-def create_user_visited():
-    pass
+def get_all_campgrounds():
+    conn = get_db_connection()
+    campgrounds = None
 
-def create_user_wishlist():
-    pass
-
-def create_user():
-    pass
+    if conn is None:
+        return ['Unable to connect']
+    
+    try:
+        cur = conn.cursor()
+        cur.execute("select * from campgrounds")
+        campgrounds = cur.fetchall()
+        cur.close()
+        conn.close()
+    except:
+        campgrounds = ['Unable to find table']
+    
+    return campgrounds
