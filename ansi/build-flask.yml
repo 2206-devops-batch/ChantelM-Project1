@@ -22,15 +22,20 @@
       username: "{{ dock_user }}"
       password: "{{ dock_pass }}"
   
-  - name: Build Flask image
+  - name: Remove image
     docker_image:
-      source: build
-      build:
-        path: ../src/client
+      state: absent
       name: chamoo334/p1fa
-      tag: latest
-      state: present
-      push: yes
+  
+  # - name: Build Flask image
+  #   docker_image:
+  #     source: build
+  #     build:
+  #       path: ../src/client
+  #     name: chamoo334/p1fa
+  #     tag: latest
+  #     state: present
+  #     push: yes
 
 
 
