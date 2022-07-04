@@ -29,7 +29,9 @@
   
   - name: Build Flask image
     docker_image:
-      path: ../src/client
+      source: build
+      build:
+        path: ../src/client
       name: chamoo334/p1fa
       tag: latest
       state: present
