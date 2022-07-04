@@ -3,19 +3,23 @@
 {% block page_content %}
     {{super()}}
 
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Location</th>
-        </tr>
-        {% for i in camps %}
-            <tr>
-                <td>{{i[0]}}</td>
-                <td>{{i[1]}}</td>
-                <td>{{i[2]}}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">Campground</th>
+            <th scope="col">Location</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in camps %}
+                <tr>
+                    <!-- <th scope="row">{{i[0]}}</th> -->
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
 
 {% endblock page_content %}
