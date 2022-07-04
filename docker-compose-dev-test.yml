@@ -3,7 +3,7 @@ version: '3.7'
 services:
   flask-app:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: devDockerfile.dev
       context: ./src/client
     ports:
       - "5000:5000"
