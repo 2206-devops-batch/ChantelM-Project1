@@ -2,9 +2,17 @@
 - name: Deploy Flask EC2 
   hosts: p1flask
   gather_facts: true
+  become: true
+  vars_files:
+    - vault.yml
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_container_module.html
   tasks:
+  - name: Log into DockerHub
+    docker_login:
+      username: "{{ dock_user }}"
+      password: "{{ dock_pass }}"
+
   - name: Stop AWS flask container
     docker_container:
       name: "p1_aws_fa"
