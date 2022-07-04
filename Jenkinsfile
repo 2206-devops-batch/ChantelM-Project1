@@ -29,13 +29,7 @@ pipeline {
                 checkout scm
                 
                 dir("ansi") {                
-                    // script {
-                    //     ansiblePlaybook( 
-                    //         playbook: '/home/ubuntu/workspace/p1-multi_development/ansi/build-flask.yml',
-                    //         inventory: '/home/ubuntu/inventory'
-                    //     )
-                    // }
-
+                    sh 'cp /home/ubuntu/env.py /home/ubuntu/workspace/p1-multi_development/src/client/utils/env.py'
                     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
                     sh 'cp /home/ubuntu/inventory inventory'
                     sh 'cp /home/ubuntu/vault.yml vault.yml'

@@ -3,6 +3,19 @@
 {% block page_content %}
     {{super()}}
 
-    <h2>home content</h2>
-    <h2>Jenkins deployed this</h2>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Location</th>
+        </tr>
+        {% for i in camps %}
+            <tr>
+                <td>{{i[0]}}</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock page_content %}

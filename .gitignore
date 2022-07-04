@@ -1,6 +1,7 @@
 *.env
 *.pem
 *.cfg
+env.py
 inventory
 .venv/
 __pycache__/
