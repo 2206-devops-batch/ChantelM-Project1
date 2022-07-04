@@ -15,13 +15,12 @@
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
   # https://docs.ansible.com/ansible/2.3/docker_login_module.html#examples
-  
+
   tasks:
   - name: Log into DockerHub
     docker_login:
       username: "{{ dock_user }}"
       password: "{{ dock_pass }}"
-      email: "{{ dock_email }}"
   
   - name: Build Flask image
     docker_image:
@@ -32,11 +31,6 @@
       tag: latest
       state: present
       push: yes
-  
-  - name: Log out of DockerHub
-    docker_login:
-      state: absent
-      email: "{{ dock_email }}"
 
 
 
