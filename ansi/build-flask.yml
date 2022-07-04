@@ -2,9 +2,26 @@
 - name: Build Flask Image
   hosts: local
   gather_facts: false
+  become: true
+  vars_files:
+    - vault.yml
+
+
+  pre_tasks:
+  - name: "Sym link Python"
+    raw: 'ln -s /usr/bin/python3 /usr/bin/python'
+    register: set_symlink
+    failed_when: set_symlink.rc != 0 and set_symlink.rc != 1
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
+  # https://docs.ansible.com/ansible/2.3/docker_login_module.html#examples
+
   tasks:
+  - name: Log into DockerHub
+    docker_login:
+      username: "{{ dock_user }}"
+      password: "{{ dock_pass }}"
+  
   - name: Build Flask image
     docker_image:
       source: build
@@ -14,8 +31,6 @@
       tag: latest
       state: present
       push: yes
-
-  # - name: Run Flask tests
 
 
 

@@ -29,9 +29,23 @@ pipeline {
                 checkout scm
                 
                 dir("ansi") {
-                    echo 'testing jenkins ansible.cfg python interpreter setting'
+                    echo 'testing Ansible API permissions'
                     
-                    sh 'pwd'
+                    // script {
+                    //     ansiblePlaybook( 
+                    //         playbook: '/home/ubuntu/workspace/p1-multi_development/ansi/build-flask.yml',
+                    //         inventory: '/home/ubuntu/inventory'
+                    //     )
+                    // }
+
+                    sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                    sh 'cp /home/ubuntu/inventory inventory'
+                    sh 'cp /home/ubuntu/vault.yml vault.yml'
+                    sh 'cp /home/ubuntu/p1.pem p1.pem'
+                    sh 'chmod 400 p1.pem'
+                    sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml --vault-password-file  /home/ubuntu/vpass.txt'
+                    sh 'rm ansible.cfg inventory'
+                    sh 'rm p1.pem'
 
                 }
                 
@@ -54,13 +68,13 @@ pipeline {
                 checkout scm
 
                 // dir("src/client/ansi") {
-                //     sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
-                //     sh 'cp /home/ubuntu/inventory inventory'
-                //     sh 'cp /home/ubuntu/p1.pem p1.pem'
-                //     sh 'chmod 400 p1.pem'
-                //     sh 'ansible-playbook -i inventory deploy-flask.yml'
-                //     sh 'rm ansible.cfg inventory'
-                //     sh 'sudo rm p1.pem'
+                    // sh 'cp /home/ubuntu/ansible.cfg ansible.cfg'
+                    // sh 'cp /home/ubuntu/inventory inventory'
+                    // sh 'cp /home/ubuntu/p1.pem p1.pem'
+                    // sh 'chmod 400 p1.pem'
+                    // sh 'ansible-playbook -i inventory deploy-flask.yml'
+                    // sh 'rm ansible.cfg inventory'
+                    // sh 'sudo rm p1.pem'
                 // }
 
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
