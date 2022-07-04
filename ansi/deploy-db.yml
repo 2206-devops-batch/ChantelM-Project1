@@ -2,9 +2,16 @@
 - name: Deploy PostgreSQL EC2
   hosts: p1db 
   gather_facts: true
+  become: true
+  vars_files:
+    - vault.yml
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_container_module.html
   tasks:
+  - name: Log into DockerHub
+    docker_login:
+      username: "{{ dock_user }}"
+      password: "{{ dock_pass }}"
 
   - name: Stop AWS db container
     docker_container:

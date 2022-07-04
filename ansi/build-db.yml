@@ -2,9 +2,17 @@
 - name: Build PostgreSQL Image
   hosts: local
   gather_facts: true
+  become: true
+  vars_files:
+    - vault.yml
 
   # https://docs.ansible.com/ansible/2.5/modules/docker_image_module.html
   tasks:
+  - name: Log into DockerHub
+    docker_login:
+      username: "{{ dock_user }}"
+      password: "{{ dock_pass }}"
+    
   - name: build the image
     docker_image:
       source: build
