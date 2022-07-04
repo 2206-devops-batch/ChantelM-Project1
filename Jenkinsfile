@@ -43,7 +43,7 @@ pipeline {
                     sh 'cp /home/ubuntu/vault.yml vault.yml'
                     sh 'cp /home/ubuntu/p1.pem p1.pem'
                     sh 'chmod 400 p1.pem'
-                    sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml'
+                    sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml --vault-password-file  /home/ubuntu/vpass.txt'
                     sh 'rm ansible.cfg inventory'
                     sh 'rm p1.pem'
 
