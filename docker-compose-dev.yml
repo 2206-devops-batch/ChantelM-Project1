@@ -3,7 +3,7 @@ version: '3.7'
 services:
   pgdb:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: devDockerfile.dev
       context: ./src/server
     ports:
       - "5432:5432"
@@ -11,7 +11,7 @@ services:
 
   flask-app:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: devDockerfile.dev
       context: ./src/client
     links:
       - "pgdb:testnet"
