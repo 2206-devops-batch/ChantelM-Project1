@@ -41,8 +41,6 @@ pipeline {
                     sh 'cp /home/ubuntu/vault.yml vault.yml'
                     sh '/home/ubuntu/.local/bin/ansible-playbook -i inventory build-flask.yml --vault-password-file  /home/ubuntu/vpass.txt'
                     sh 'rm ansible.cfg inventory'
-                    sh 'rm p1.pem'
-
                 }
                 
                 sshagent(credentials : ['59cf2e5d-df64-4dd8-8556-f16441112899']) {
