@@ -14,6 +14,6 @@ def homepage():
 
 
 if __name__ == '__main__':
-    options = [False, db.config['AWS_HOST'], db.config['AWS_PORT']] if db.curenv == 'production' else [True, '0.0.0.0', '5000']
+    options = [False, '0.0.0.0', '5000']
 
     app.run(debug=options[0], host=options[1], port=options[2])

@@ -5,11 +5,10 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
+RUN export FLASK_APP=app
+RUN export FLASK_ENV=production
 
 COPY . .
-
-ENV FLASK_ENV=production
-ENV FLASK_APP=app
 
 EXPOSE 5000
 
