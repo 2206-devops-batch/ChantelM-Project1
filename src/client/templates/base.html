@@ -17,13 +17,17 @@
 
 {% block body %}
     {{super()}}
-    
-    {% if name %}
-        <h1>WHERE TO NEXT, {{ name }}?</h1>
-    {% else %}
-        <h1>WHERE TO NEXT?</h1>
-    {% endif %}
+    <div class="container center-block">
+        {% if name %}
+            <h1>WHERE TO NEXT, {{ name }}?</h1>
+        {% else %}
+            <h1>WHERE TO NEXT?</h1>
+        {% endif %}
 
-    {% block page_content %}{% endblock %}
-
+        {% block page_content %}{% endblock %}
+    </div>
 {%- endblock %}
+
+{% block scripts %}
+    {{super()}}
+{% endblock %}
