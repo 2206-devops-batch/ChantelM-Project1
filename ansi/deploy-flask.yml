@@ -23,12 +23,12 @@
       name: "p1_aws_fa"
       state: absent
   
-  # - name: Run AWS flask container
-  #   docker_container:
-  #     name: "p1_aws_fa"
-  #     image: "chamoo334/p1fa"
-  #     restart: true
-  #     pull: true
-  #     ports:
-  #     - "5000:5000"
+  - name: Run AWS flask container
+    docker_container:
+      name: "p1_aws_fa"
+      image: "chamoo334/p1fa"
+      restart: true
+      pull: true
+      ports:
+      - "5000:5000"
   
