@@ -46,7 +46,35 @@ def get_all_campgrounds():
     return campgrounds
 
 def add_campground(cName, cLocation):
-    pass
+    conn = get_db_connection()
+
+    if conn is None:
+        return ['Unable to connect']
+    
+    try:
+        cur = conn.cursor()
+        cur.execute(f"INSERT INTO campgrounds (name, location) VALUES ({cName}, {cLocation})")
+        conn.commit()
+        cur.close()
+        conn.close()
+    except:
+        return False
+    
+    return True
 
 def del_campground(cNum):
-    pass
+    conn = get_db_connection()
+
+    if conn is None:
+        return ['Unable to connect']
+    
+    try:
+        cur = conn.cursor()
+        cur.execute(f"DELETE FROM campgrounds WHERE id = {cNum}")
+        conn.commit()
+        cur.close()
+        conn.close()
+    except:
+        return False
+    
+    return True

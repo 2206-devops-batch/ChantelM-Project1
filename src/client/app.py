@@ -21,13 +21,9 @@ def homepage():
             db.add_campground(addForm.campName.data, addForm.campLocation.data)
 
         elif delForm.submitD.data and delForm.validate():
-            # print(delForm.campNum.data, file=sys.stdout)
             db.del_campground(delForm.campNum.data)
 
     return render_template('home.html', addForm=addForm, delForm=delForm, camps=db.get_all_campgrounds())
-    # return render_template('home.html', addForm=addForm, delForm=delForm, camps=dummies)
-    # return render_template('home.html', camps=dummies)
-
 
 if __name__ == '__main__':
     options = [True, '0.0.0.0', '5000']
