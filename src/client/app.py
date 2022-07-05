@@ -9,7 +9,6 @@ Bootstrap(app)
 app.config['SECRET_KEY'] = db.config.APP_SECRET_KEY
 
 
-curnum = 3
 dummies = [('1', 'a', '123'), ('2', 'b', '123')]
 @app.route('/',  methods=['GET', 'POST'])
 def homepage():
