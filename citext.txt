@@ -1,7 +1,0 @@
-Testing both the initial pull request
-
-Testing second pipeline for merge notification
-
-Testing for push notification
-
-Test 4
