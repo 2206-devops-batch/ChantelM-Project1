@@ -18,10 +18,12 @@ def homepage():
     
     if request.method == 'POST':
         if addForm.submitA.data and addForm.validate():
-            db.add_campground(addForm.campName.data, addForm.campLocation.data)
+            res = db.add_campground(addForm.campName.data, addForm.campLocation.data)
+            print(f'add res: {res}', file=sys.stdout)
 
         elif delForm.submitD.data and delForm.validate():
-            db.del_campground(delForm.campNum.data)
+            res = db.del_campground(delForm.campNum.data)
+            print(f'del res: {res}', file=sys.stdout)
 
     return render_template('home.html', addForm=addForm, delForm=delForm, camps=db.get_all_campgrounds())
 
