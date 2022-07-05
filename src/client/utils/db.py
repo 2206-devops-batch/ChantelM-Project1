@@ -44,3 +44,9 @@ def get_all_campgrounds():
         campgrounds = ['Unable to find table']
     
     return campgrounds
+
+def add_campground(cName, cLocation):
+    pass
+
+def del_campground(cNum):
+    pass
