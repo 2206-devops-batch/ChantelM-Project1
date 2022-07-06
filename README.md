@@ -1,24 +1,23 @@
 # ChantelM-Project1
-Web application to manage future camping locations
+Demonstrative Software Delivery Pipeline
 
 - [ChantelM-Project1](#chantelm-project1)
 - [About the Project](#about-the-project)
   - [Purpose](#purpose)
   - [Tools](#tools)
-  - [Project Structure](#project-structure)
-    - [File Structure](#file-structure)
-    - [CI/CD Pipeline](#cicd-pipeline)
-- [Setup & Deployment](#setup--deployment)
-  - [Prequisites](#prequisites)
-  - [Setup & Deployment](#setup--deployment-1)
-    - [Development](#development)
-    - [Production](#production)
-- [Usage](#usage)
-  - [Remove a Campground](#remove-a-campground)
+  - [File Structure](#file-structure)
+- [Pipeline](#pipeline)
+  - [Continuous Integration](#continuous-integration)
+  - [Continuous Delivery](#continuous-delivery)
+  - [Continuous Deployment](#continuous-deployment)
 
 # About the Project
 
 ## Purpose
+
+Where to Next is an app for maintaining a list of campgrounds. Once a campground has been visited, delete the item number from your list.
+
+![image of web app](images/app-home.png)
 
 ## Tools
 - [Python 3](https://www.python.org/downloads/)
@@ -32,23 +31,28 @@ Web application to manage future camping locations
   - [SSH Agent](https://plugins.jenkins.io/ssh-agent/)
 - [Ansible](https://www.ansible.com/)
 - [Docker](https://www.docker.com/)
+- [Git](https://git-scm.com/doc)
+- [Github](https://github.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-## Project Structure
+## File Structure
 
-### File Structure
+![image of project file structure](images/file-structure.png)
 
-### CI/CD Pipeline
+# Pipeline
 
-# Setup & Deployment
+![image of pipeline](images/pipeline.jpg)
 
-## Prequisites
+Using a webhook, every pull request and push event triggers GitHub to notify the Jenkins controller. Once the controller node receveives the event, it cycles through 3 stages based on the specific events information.
 
-## Setup & Deployment
+## Continuous Integration
 
-### Development
+The first stage (testing) occurs only when a pull request is sent to the development branch. Testing occurs only on the test server. The results are returned to GitHub to allow for viewing before a pull request is approved.
 
-### Production
+## Continuous Delivery
 
-# Usage
+Once a pull request is approved and merged with the development branch, the building of a Docker image occurs on the build server. A successful build and push to Docker Hub triggers the deployment stage by updating the repository's deployment branch.
 
-## Remove a Campground
+## Continuous Deployment
+
+All pushes to the deployment branch trigger the final stage of deploying the application to the host server.
