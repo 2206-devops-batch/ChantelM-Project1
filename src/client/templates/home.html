@@ -35,22 +35,4 @@
         </fieldset>
     </form>
 
-      <form method="POST" action="">
-        {{ addForm.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend>Add A Campground</legend>
-            <div class="form-group">
-                {{ addForm.campName.label(class="form-control-label") }}
-                {{ addForm.campName(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ addForm.campLocation.label(class="form-control-label") }}
-                {{ addForm.campLocation(class="form-control form-control-lg") }}
-            </div>
-            <div class="form-group">
-                {{ addForm.submitA(class="btn btn-primary") }}
-            </div>
-        </fieldset>
-      </form>
-
 {% endblock page_content %}
