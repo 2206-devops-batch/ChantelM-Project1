@@ -8,7 +8,6 @@ Demonstrative Software Delivery Pipeline
   - [File Structure](#file-structure)
 - [Pipeline](#pipeline)
   - [Continuous Integration](#continuous-integration)
-  - [Continuous Delivery](#continuous-delivery)
   - [Continuous Deployment](#continuous-deployment)
 
 # About the Project
@@ -43,14 +42,12 @@ Where to Next is an app for maintaining a list of campgrounds. Once a campground
 
 ![image of pipeline](images/pipeline.jpg)
 
-Using a webhook, every pull request and push event triggers GitHub to notify the Jenkins controller. Once the controller node receveives the event, it cycles through 3 stages based on the specific events information.
+Using a webhook, every pull request and push event triggers GitHub to notify the Jenkins controller. Once the controller node receives the event, it cycles through 3 stages based on the specific events information.
 
 ## Continuous Integration
 
-The first stage (testing) occurs only when a pull request is sent to the development branch. Testing occurs only on the test server. The results are returned to GitHub to allow for viewing before a pull request is approved.
-
-## Continuous Delivery
-
+The first stage (testing) occurs only when a pull request is sent to the development branch. Testing occurs only on the test server. The results are returned to GitHub to allow for viewing before a pull request is approved. <br>
+<br>
 Once a pull request is approved and merged with the development branch, the building of a Docker image occurs on the build server. A successful build and push to Docker Hub triggers the deployment stage by updating the repository's deployment branch.
 
 ## Continuous Deployment
