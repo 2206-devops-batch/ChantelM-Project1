@@ -43,7 +43,7 @@ Where to Next is an app for maintaining a list of campgrounds. Once a campground
 
 ![image of pipeline](images/pipeline.jpg)
 
-Using a webhook, every pull request and push event triggers GitHub to notify the Jenkins controller. Once the controller node receveives the event, it cycles through 3 stages based on the specific events information.
+Using a webhook, every pull request and push event triggers GitHub to notify the Jenkins controller. Once the controller node receives the event, it cycles through 3 stages based on the specific events information.
 
 ## Continuous Integration
 
