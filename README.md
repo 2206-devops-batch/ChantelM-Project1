@@ -52,4 +52,4 @@ Once a pull request is approved and merged with the development branch, the buil
 
 ## Continuous Deployment
 
-All pushes to the deployment branch trigger the final stage of deploying the application to the host server.
+All pushes to the deployment branch trigger the final stage of deploying the application. Using Ansible, the server dedicated for deployment pulls the recently pushed Docker image and starts a container on the dedicated app server.
